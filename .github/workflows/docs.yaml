@@ -19,7 +19,7 @@ jobs:
         path: docs/_build/html/
 
   publish_pages:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs:
       - build_docs
     runs-on: ubuntu-latest
