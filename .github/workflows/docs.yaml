@@ -6,21 +6,76 @@ on:
       - master
 
 jobs:
+  build_docs_old:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PtyPy Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup MPI
+        uses: mpi4py/setup-mpi@v1
+        with:
+          mpi: mpich
+
+      - name: Install Sphinx
+        run: |
+          pip install sphinx
+          which sphinx-build
+
+      - name: Install PtyPy
+        run: pip install .[full]
+
+      - name: Prepare Tutorials
+        working-directory: doc
+        run: python script2rst.py
+
+      - name: Prepare Templates
+        working-directory: doc
+        run: python tmp2rst.py
+
+      - name: Prepare Parameters
+        working-directory: doc
+        run: python parameters2rst.py
+
+      - name: Set Path to Sphinx Build
+        run: echo "SPHINXBUILD=`which sphinx-build`" >> $GITHUB_ENV
+
+      - name: Build Sphinx Documentation
+        working-directory: doc
+        run: make html
+
+      - name: Upload Docs Artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: old-docs
+          path: doc/build/html/
+
   build_docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout/@v4
-    - uses: ammaraskar/sphinx-action@8.1.3
-      with:
-        docs-folder: docs/
-    - uses: actions/upload-artifact@v4.4.3
-      with:
-        name: new-docs
-        path: docs/_build/html/
+      - name: Checkout PtyPy Code
+        uses: actions/checkout@v4
+        
+      - name: Build Sphinx Documentation
+        uses: ammaraskar/sphinx-action@8.1.3
+        with:
+          docs-folder: docs/
+          
+      - name: Upload Docs Artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: new-docs
+          path: docs/_build/html/
 
   publish_pages:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs:
+      - build_docs_old
       - build_docs
     runs-on: ubuntu-latest
     permissions:
@@ -33,30 +88,26 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5.0.0
 
+      - name: Download Old Docs Artifact
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: old-docs
+          path: ./
+
       - name: Download Docs Artifact
         uses: actions/download-artifact@v4.1.8
         with:
           name: new-docs
-          path: docs
+          path: ./docs
 
       - name: Fix File Permissions for Pages
-        run: chmod -R +rX docs
-
-      - name: Merge Artifacts
-        uses: actions/upload-artifact/merge@v4.4.3
-        with:
-          separate-directories: true 
-
-      - name: Download Merged Artifact
-        uses: actions/download-artifact@v4.1.8
-        with:
-          name: merged-artifacts
-          path: merged-artifacts
+        run: |
+          chmod -R +rX .
 
       - name: Upload Merged Artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: merged-artifacts
+          path: ./
 
       - name: Publish Docs to GitHub Pages
         id: deployment
