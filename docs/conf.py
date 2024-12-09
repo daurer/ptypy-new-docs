@@ -12,6 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path('..', 'ptypy').resolve()))
 
 print(sys.path)
+print(sys.executable)
 
 project = 'PtyPy'
 copyright = '2024, AUTHORS'
@@ -29,6 +30,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     # 'sphinx.ext.linkcode',
+    'myst_parser',
 ]
 
 templates_path = ['_templates']
@@ -58,4 +60,5 @@ html_theme_options = {
             "icon": "fab fa-twitter-square ",
         },
     ],
+    "announcement": "https://github.com/daurer/ptypy-new-docs/raw/master/docs/_templates/banner.html",
 }

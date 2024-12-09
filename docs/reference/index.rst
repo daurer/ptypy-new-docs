@@ -1,8 +1,24 @@
 API Reference
 =============
 
+Subpackages
+-----------
 
 .. toctree::
-    :maxdepth: 2
+    
+   core
+   engines
+   experiment
+   io
+   resources
+   simulations
+   utils
+   debug
 
-    utils
+Module contents
+---------------
+
+.. automodule:: ptypy
+     :members:
+     :undoc-members:
+     :show-inheritance:
