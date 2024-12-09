@@ -15,7 +15,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
+          check-latest: true
 
       - name: Setup MPI
         uses: mpi4py/setup-mpi@v1
@@ -23,9 +24,7 @@ jobs:
           mpi: mpich
 
       - name: Install Sphinx
-        run: |
-          pip install sphinx
-          which sphinx-build
+        run: pip install sphinx
 
       - name: Install PtyPy
         run: pip install .[full]
@@ -60,11 +59,30 @@ jobs:
     steps:
       - name: Checkout PtyPy Code
         uses: actions/checkout@v4
-        
-      - name: Build Sphinx Documentation
-        uses: ammaraskar/sphinx-action@8.1.3
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          docs-folder: docs/
+          python-version: '3.13'
+          check-latest: true
+
+      - name: Setup MPI
+        uses: mpi4py/setup-mpi@v1
+        with:
+          mpi: mpich
+
+      - name: Install Sphinx
+        run: pip install sphinx
+
+      - name: Install PtyPy
+        run: pip install .[full]
+
+      - name: Set Path to Sphinx Build
+        run: echo "SPHINXBUILD=`which sphinx-build`" >> $GITHUB_ENV
+
+      - name: Build Sphinx Documentation
+        working-directory: docs
+        run: make html
           
       - name: Upload Docs Artifact
         uses: actions/upload-artifact@v4.4.3
