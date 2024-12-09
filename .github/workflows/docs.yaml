@@ -77,6 +77,9 @@ jobs:
       - name: Install PtyPy
         run: pip install .[full]
 
+      - name: Install docs dependencies
+        run: pip install -r docs/requirements.txt
+
       - name: Set Path to Sphinx Build
         run: echo "SPHINXBUILD=`which sphinx-build`" >> $GITHUB_ENV
 

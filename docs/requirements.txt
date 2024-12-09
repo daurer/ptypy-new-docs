@@ -1,10 +1,1 @@
 pydata-sphinx-theme
-numpy
-scipy
-h5py
-mpi4py
-matplotlib
-pyzmq
-pillow
-pyfftw
-pyyaml
