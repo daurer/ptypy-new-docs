@@ -44,6 +44,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
+html_css_files = ["ptypy.css"]
 html_logo = '_static/logo_100px.png'
 html_favicon = '_static/ptypyicon.ico'
 
@@ -60,5 +61,5 @@ html_theme_options = {
             "icon": "fab fa-twitter-square ",
         },
     ],
-    "announcement": "https://github.com/daurer/ptypy-new-docs/raw/master/docs/_templates/banner.html",
+    "announcement": "https://daurer.github.io/ptypy-new-docs/docs/_static/banner.html",
 }

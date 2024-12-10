@@ -1,0 +1,11 @@
+div.disclaimer {
+    background-color: #2c5d8a;
+    color: #f9eed0;
+    text-align: left;
+    padding: 1em;
+    font-weight: bold;
+}
+
+div.disclaimer a{
+    color: #d8b340;
+}
