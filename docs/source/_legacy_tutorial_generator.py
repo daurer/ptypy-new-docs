@@ -48,14 +48,14 @@ def generate_legacy_tutorial_rst(script_name, outdir='./userguide/generated/lega
     fig_path = outdir + os.sep
 
     frst.write("""
-    .. note::
-       This tutorial was generated from the python source
-       :file:`[ptypy_root]/tutorial/%(fname)s` using :file:`ptypy/doc/%(this)s`.
-       You are encouraged to modify the parameters and rerun the tutorial with::
+.. note::
+   This tutorial was generated from the python source
+   :file:`[ptypy_root]/tutorial/%(fname)s` using :file:`ptypy/doc/%(this)s`.
+   You are encouraged to modify the parameters and rerun the tutorial with::
 
-         $ python [ptypy_root]/tutorial/%(fname)s
+     $ python [ptypy_root]/tutorial/%(fname)s
 
-    """ % {'fname': os.path.split(scr)[-1], 'this': script_name})
+""" % {'fname': os.path.split(scr)[-1], 'this': script_name})
 
     was_comment = True
 
