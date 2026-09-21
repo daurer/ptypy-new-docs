@@ -34,7 +34,7 @@ def replace_rst_in_templates(template, outdir="./userguide/generated/legacy/rst/
             else:
                 frst.write(line)
         
-def generate_legacy_tutorial_rst(script_name, outdir='./userguide/generated/legacy'):
+def generate_legacy_tutorial_rst(script_name, outdir='userguide/generated/legacy'):
 
     _tutorial_dir = 'tutorial/'
     scr = "../../" + _tutorial_dir + script_name
@@ -74,7 +74,7 @@ def generate_legacy_tutorial_rst(script_name, outdir='./userguide/generated/lega
             #plt.tight_layout()
             fig.savefig(fname, dpi=300)
             frst.write('\nSee :numref:`%s` for the plotted image.\n\n' % fig_name)
-            frst.write('.. figure:: '+'..'+os.sep+fname+'\n')
+            frst.write('.. figure:: '+'../'+os.sep+fig_name+'.png'+'\n')
             ratio = fig.get_figwidth()/fig.get_figheight()
             frst.write('   :width: %d ' % min(int(ratio * 60), 100)+'%\n')
             frst.write('   :figclass: highlights\n')
@@ -87,6 +87,7 @@ def generate_legacy_tutorial_rst(script_name, outdir='./userguide/generated/lega
                     break
                 frst.write('   '+line2[1:].strip()+'\n')
             frst.write('\n')
+            fig.clf()
             continue
 
         if line.startswith('"""'):

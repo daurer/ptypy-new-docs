@@ -144,7 +144,7 @@ The PtyScan class of |ptypy| provides support for three use cases.
   a reconstruction directly from raw data with a standard reconstruction
   script. 
   
-  .. figure:: ../img/data_case_integrated.png
+  .. figure:: ../../../img/data_case_integrated.png
      :width: 70 %
      :figclass: highlights
      :name: case_integrated
@@ -184,7 +184,7 @@ The PtyScan class of |ptypy| provides support for three use cases.
   to ``<..>.data.source='file'`` while the rest of the parameters are ignored
   and may remain untouched.
   
-  .. figure:: ../img/data_case_prepared.png
+  .. figure:: ../../../img/data_case_prepared.png
      :width: 70 %
      :figclass: highlights
      :name: case_prepared
@@ -213,7 +213,7 @@ The PtyScan class of |ptypy| provides support for three use cases.
   overhead or notable pauses in the reconstruction. For |ptypy| there
   is no difference if compared to a single source file (a feature of [HDF]_\ ).
   
-  .. figure:: ../img/data_case_flyscan.png
+  .. figure:: ../../../img/data_case_flyscan.png
      :width: 70 %
      :figclass: highlights
      :name: case_flyscan
@@ -352,7 +352,7 @@ is a bit cumbersome with h5py, there are a few convenience function in the
 Tutorial : Subclassing PtyScan
 ==============================
 
-!!include!! ../generated/legacy/subclassptyscan.tut
+!!include!! ./userguide/generated/legacy/subclassptyscan.tut
 
 
 Listing the new subclass
