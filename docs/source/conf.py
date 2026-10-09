@@ -11,6 +11,9 @@ import sys, os
 import inspect
 from pathlib import Path
 
+from sphinx.util import logging
+logger = logging.getLogger(__name__)
+
 sys.path.insert(0, str(Path('../..', 'ptypy').resolve()))
 sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
@@ -82,8 +85,8 @@ if generate_notebook_tutorials and (path_to_notebooks is not None):
         os.symlink(path_to_notebooks, path_to_generated_notebooks)
 
 # Extract doc version from env variable
-version_match = os.environ["PTYPY_DOCS_VERSION"] if "PTYPY_DOCS_VERSION" in os.environ else "master"
-print("version match = ", version_match)
+version_match = os.environ.get("PTYPY_DOCS_VERSION")
+logger.info(f"version match = {version_match}", colorize=True)
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
