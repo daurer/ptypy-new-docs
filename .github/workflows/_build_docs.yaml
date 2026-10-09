@@ -58,10 +58,10 @@ jobs:
         working-directory: docs
         run: make html
         env:
-          PTYPY_BUILD_LEGACY_TUTORIALS: 1
-          PTYPY_BUILD_PARAM_TREE: 1
-          PTYPY_BUILD_USERGUIDE_IMAGES: 1
-          PTYPY_BUILD_NOTEBOOK_TUTORIALS: 1
+          PTYPY_BUILD_LEGACY_TUTORIALS: 0
+          PTYPY_BUILD_PARAM_TREE: 0
+          PTYPY_BUILD_USERGUIDE_IMAGES: 0
+          PTYPY_BUILD_NOTEBOOK_TUTORIALS: 0
           PTYPY_DOCS_VERSION: ${{ inputs.tag }}
 
       - name: Rename Build Directory

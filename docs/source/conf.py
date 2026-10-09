@@ -84,7 +84,6 @@ if generate_notebook_tutorials and (path_to_notebooks is not None):
 # Extract doc version from env variable
 version_match = os.environ["PTYPY_DOCS_VERSION"] if "PTYPY_DOCS_VERSION" in os.environ else "master"
 print("version match = ", version_match)
-sys.exit()
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
